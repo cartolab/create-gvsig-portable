@@ -26,3 +26,7 @@ Ademas de tocar el fichero proyect.xml para decidir que plugins añadir en tu ve
 * Incluir ficheros adicionales añadiéndolos con la estructura de directorios completa bajo el directorio **portable**. Mira por ejemplo como se modifican el config.xml de extAnnotation creando un nuevo fichero en create-gvsig-portable/portable/common/bin/gvSIG/extensiones/com.iver.cit.gvsig.annotation/config.xml
 
 * Los ficheros de configuración van el directorio **cfg**. Puedes acceder a este directorio por código llamando a Launcher.getAppHomeDir()
+
+# Crear un entorno de desarrollo
+
+Para configurar un entorno de desarrollo se puede ejecutar el target **createTestEnviroment** del fichero **deploy.xml**. Esto limpiará andami y comilará todos los proyectos que le hayamos indicado, además de sobreescribir los ficheros que hayamos definido bajo el directorio **portable**

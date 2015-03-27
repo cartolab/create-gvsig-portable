@@ -13,11 +13,11 @@
 	-->
 
 	<property name="gvSIG_dist_projects_on_main_svn" value="
+		_fwAndami,
 		libExceptions,
 		libInternationalization,
 		libIverUtiles,
 		libUIComponent,
-		_fwAndami,
 		libGeoUtils,
 		libCorePlugin,
 		libProjection,
@@ -26,6 +26,7 @@
 		libDriverManager,
 		libRemoteServices,
 		libGDBMS,
+		extRasterTools-SE,
 		libFMap,
 		libGPE,
 		libGPE-XML,
@@ -38,7 +39,6 @@
 		libDwg,
 		extDwg,
 		extSymbology,
-		extRasterTools-SE,
 		extAddEventTheme,
 		extJDBC,
 		extCAD,

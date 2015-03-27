@@ -6,7 +6,7 @@
 		extArcims,
 		extSDE,
 	-->
-	
+
 	<!-- Handled scecifically
 		sextante
 		binaries
@@ -71,8 +71,8 @@
 		extLayerLoadingOrder,
 		org.gvsig.installer.app.extension
 	"/>
-	
-	
+
+
 	<property name="gvSIG_dist_projects_on_other_svn" value="
 		org.gvsig.copypastegeom,
 		org.gvsig.selectduplicates,
@@ -81,7 +81,7 @@
 		org.gvsig.chartlegend,
 		extNavTable
 	"/>
-	
+
 	<property name="custom-projects" value="
 		libGeocoding,
 		extNormalization,
@@ -93,7 +93,7 @@
 		extDerivedGeometries,
 		jgpx
 	"/>
-		
+
 	<property name="gvSIG_dist" value="
 		${gvSIG_dist_projects_on_main_svn},
 		${gvSIG_dist_projects_on_other_svn},

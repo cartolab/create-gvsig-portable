@@ -1,4 +1,4 @@
-Kit de herramientas desarollado por [Cartolab](http://cartolab.udc.es) para crear versiones personalizadas y portables de gvSIG 1.x
+Kit de herramientas desarollado por [Cartolab](http://cartolab.udc.es) y mantenido actualmente por [iCarto](http://icarto.es) para crear versiones personalizadas y portables de gvSIG 1.x
 
 Este proyecto es básicamente un script de Ant que permite crear versiones portable de gvSIG para Windows y Linux.
 
@@ -6,7 +6,7 @@ Este proyecto es básicamente un script de Ant que permite crear versiones porta
 
 * Configurar un workspace válido con los proyectos que quieras incluir en tu versión
 * Incluír en el workspace el directorio **install** que está en la ráiz del repositorio de gvSIG
-* Descargar y descomprimir en /var/tmp el [fichero](http://www.adrive.com/public/Y4awtk/portable.zip) que contiene la máquina virtual de java y algunos ficheros adicionales.
+* Descargar y descomprimir en /var/tmp el [fichero](https://dl.dropboxusercontent.com/u/2131623/portable.tgz) que contiene la máquina virtual de java y algunos ficheros adicionales.
 * El proceso debe ejecutarse en una máquina con Linux
 * Añadir al workspace el proyecto **create-gvsig-portable**, o copiar el contenido, script **deploy.xml** y directorio **portable** a tu propio proyecto
 

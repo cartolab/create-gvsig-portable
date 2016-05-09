@@ -4,16 +4,18 @@ Este proyecto es básicamente un script de Ant que permite crear versiones porta
 
 # Requisitos
 
+* El proceso debe ejecutarse en una máquina Linux
 * Configurar un workspace válido con los proyectos que quieras incluir en tu versión
-* Incluír en el workspace el directorio **install** que está en la ráiz del repositorio de gvSIG
-* Descargar y descomprimir en /var/tmp el [fichero](https://dl.dropboxusercontent.com/u/2131623/portable.tgz) que contiene la máquina virtual de java y algunos ficheros adicionales.
-* El proceso debe ejecutarse en una máquina con Linux
-* Añadir al workspace el proyecto **create-gvsig-portable**, o copiar el contenido, script **deploy.xml** y directorio **portable** a tu propio proyecto
+* Descargar el [fichero](https://dl.dropboxusercontent.com/u/2131623/portable.tgz) base que contiene la máquina virtual de Java y algunos ficheros adicionales. Por defecto se espera que este fichero sea descomprimido en /var/tmp
+* Descomprimir con `tar xzf portable.tgz --preserve-permission`. Dentro del tar van ficheros ejecutables. Si no se descomprime de esa forma se perderá el "executable bit"
+* Añadir al workspace el proyecto **create-gvsig-portable**, o copiar:
+ * El script **deploy.xml**
+ * El directorio **portable** a tu propio proyecto
 
 # Como construir la versión portable
 
 * Editar el fichero **portable/projects.xml**. Eliminar de este proyecto los plugins que no nos interesen, y añadir los que queramos
-* Editar las properties *this-folder*, *base-path*, *custom-portable-path*, *name-lin, *name-win* con los valores que queramos
+* Editar las properties *this-folder*, *base-path*, *custom-portable-path*, *name-lin, *name-win* de **deploy.xml** con los valores que queramos
 * Ejectuar el target **createPortables** del script **deploy.xml**
 
 Esto generará un .zip y un .tgz en el directorio /tmp que contendrá el gvSIG portable.
@@ -26,6 +28,8 @@ Ademas de tocar el fichero proyect.xml para decidir que plugins añadir en tu ve
 * Incluir ficheros adicionales añadiéndolos con la estructura de directorios completa bajo el directorio **portable**. Mira por ejemplo como se modifican el config.xml de extAnnotation creando un nuevo fichero en create-gvsig-portable/portable/common/bin/gvSIG/extensiones/com.iver.cit.gvsig.annotation/config.xml
 
 * Los ficheros de configuración van el directorio **cfg**. Puedes acceder a este directorio por código llamando a Launcher.getAppHomeDir()
+
+* Cualquier contenido que coloques bajo el directorio **portable/common** Será copiado bajo la misma ruta en la portable para Windows y para Linux. Los ficheros que coloques bajo **portable/lin** o **portable/win** irán sólo a la portable de ese sistema operativo.
 
 # Crear un entorno de desarrollo
 

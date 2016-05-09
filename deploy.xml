@@ -7,8 +7,8 @@
 	<property name="custom-portable-path" value="../${this-folder}/portable/" /> <!-- remember to use the trailing slash -->
 
 	<tstamp />
-	<property name="name-lin" value="gvSIG-cartolab-allinone-lin32-${DSTAMP}" />
-	<property name="name-win" value="gvSIG-cartolab-allinone-win32-${DSTAMP}" />
+	<property name="name-lin" value="gvSIG-icarto-allinone-lin32-${DSTAMP}" />
+	<property name="name-win" value="gvSIG-icarto-allinone-win32-${DSTAMP}" />
 
 	<!-- Projects to be builded.
 	Check the file ../install/gvsig_default_installation_projects.xml,
@@ -20,16 +20,21 @@
 
 	<!-- DON'T TOUCH BELOW THIS LINE -->
 
-	<import file="../install/deploy.xml"/>
+	<!-- Overrides source and target compile versions of appgvSIG/build.xml -->
+	<property name="JavaSourceVersion" value="1.6"/>
+	<property name="JavaTargetVersion" value="1.6"/>
+
+	<import file="../appgvSIG/build.xml"/>
 
 	<property name="base-lin" value="base-lin" />
 	<property name="base-win" value="base-win" />
-	<property name="base-win-path" value="${base-path}${base-win}.zip" />
-	<property name="base-lin-path" value="${base-path}${base-lin}.tgz" />
+	<property name="base-win-path" value="${base-path}${base-win}" />
+	<property name="base-lin-path" value="${base-path}${base-lin}" />
 
 
 	<target name="makePortables" depends="buildFromSource, makePortableLinux, makePortableWindows">
 	</target>
+
 
 	<target name="makeTestEnviroment" depends="buildFromSource">
 		<!-- Copies the custom files -->
@@ -38,6 +43,7 @@
 			<fileset dir="${custom-portable-path}lin/bin" />
 		</copy>
 	</target>
+
 
 	<macrodef name="failIfAnyExists">
 		<attribute name="file1" />
@@ -59,16 +65,10 @@
 
 		<failIfAnyExists file1="/tmp/${name-lin}" file2="/tmp/${base-lin}" />
 
-		<!--  ant tar task does not preserve permissions, so we use native executable -->
-		<exec executable="tar" output="/dev/null" os="Linux" dir="/tmp">
-        	<arg value="-xz"/>
-        	<arg value="--preserve-permissions"/>
-        	<arg value="--preserve-order"/>
-        	<arg value="--file=${base-lin-path}"/>
-    	</exec>
-
-		<!-- Renames the folder to the final name of the portable -->
-		<move file="/tmp/${base-lin}" tofile="/tmp/${name-lin}" />
+		<!-- copy ant task does not preserve permissions, so executable bit will be gone -->
+		<exec executable="cp">
+		    <arg line="-R ${base-lin-path} /tmp/${name-lin}"/>
+		</exec>
 
 		<copy todir="/tmp/${name-lin}/cfg">
 			<fileset dir="${base-path}base-common/cfg/" />
@@ -174,6 +174,30 @@
 
 		<zip destfile="/tmp/${name-win}.zip" basedir="/tmp/${name-win}" />
 
+	</target>
+	
+	
+	<target name="buildFromSource">
+		<antcall target="clean-all" inheritAll="false">
+			<param name="gvSIG_projects" value="${gvSIG_dist}" />
+			<param name="mandatoryProjets" value="${gvSIG_dist}" />
+		</antcall>
+
+		<ant antfile="../appgvSIG/build.xml" target="buildNumber" inheritall="false" />
+
+		<!-- TODO:
+			Maybe "make-binary-distribution" should be used. That target makes: clean-all, build-number, build-all
+			We should thing about debug=on and debug-level
+		-->
+
+		<antcall target="build-all" inheritAll="false">
+			<param name="gvSIG_projects" value="${gvSIG_dist}" />
+			<param name="mandatoryProjets" value="${gvSIG_dist}" />
+		</antcall>
+
+		<!-- Workaround to get the binaries "compiled" at the same time for both platforms -->
+		<ant antfile="../binaries/w32/build.xml" inheritall="false" />
+		<ant antfile="../binaries/linux/build.xml" inheritall="false" />
 	</target>
 
 </project>

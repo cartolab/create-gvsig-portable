@@ -1,8 +1,8 @@
 <launch4jConfig>
-  <dontWrapJar>false</dontWrapJar>
+  <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>./_fwAndami/andami.jar</jar>
-  <outfile>./_fwAndami/gvsig-desktop.exe</outfile>
+  <jar>./andami.jar</jar>
+  <outfile>./win/bin/gvsig-desktop.exe</outfile>
   <errTitle>gvSIG launch error</errTitle>
   <cmdLine>gvSIG gvSIG/extensiones</cmdLine>
   <chdir>.</chdir>
@@ -12,7 +12,7 @@
   <customProcName>true</customProcName>
   <stayAlive>false</stayAlive>
   <manifest></manifest>
-  <icon>./install/launch4j/images/ico-gvSIG.ico</icon>
+  <icon>./ico-gvSIG.ico</icon>
   <var>PROJ_LIB=./gvSIG/extensiones/org.gvsig.crs/data</var>
   <var>GDAL_DATA=./data/gdal</var>
   <classPath>
@@ -21,10 +21,10 @@
   </classPath>
   <jre>
     <path>../jre</path>
-    <minVersion>1.6.0</minVersion>
+    <minVersion>1.5.0</minVersion>
     <maxVersion></maxVersion>
     <jdkPreference>preferJre</jdkPreference>
-    <initialHeapSize>512</initialHeapSize>
+    <initialHeapSize>256</initialHeapSize>
     <maxHeapSize>1024</maxHeapSize>
     <opt>-XX:MaxPermSize=96M</opt>
     <opt>-DgvSIG.confDir=../cfg</opt>
@@ -33,11 +33,11 @@
     <fileVersion>1.12.0.1417</fileVersion>
     <txtFileVersion>1.12.0 build 1417</txtFileVersion>
     <fileDescription>gvSIG desktop 1.12.0</fileDescription>
-    <copyright>(c) 2009-2014 gvSIG Association</copyright>
+    <copyright>(c) 2009-2012 gvSIG Association</copyright>
     <productVersion>1.12.0.1417</productVersion>
     <txtProductVersion>1.12.0 build 1417</txtProductVersion>
-    <productName>gvSIG Cartolab allinone</productName>
-    <companyName>Cartolab</companyName>
+    <productName>gvSIG desktop</productName>
+    <companyName>gvSIG Association</companyName>
     <internalName>gvsig-desktop</internalName>
     <originalFilename>gvsig-desktop.exe</originalFilename>
   </versionInfo>

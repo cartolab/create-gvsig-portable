@@ -6,7 +6,7 @@ Este proyecto es básicamente un script de Ant que permite crear versiones porta
 
 * El proceso debe ejecutarse en una máquina Linux
 * Configurar un workspace válido con los proyectos que quieras incluir en tu versión
-* Descargar el [fichero](https://dl.dropboxusercontent.com/u/2131623/portable.tgz) base que contiene la máquina virtual de Java y algunos ficheros adicionales. Por defecto se espera que este fichero sea descomprimido en /var/tmp
+* Descargar el `binaries/portable.tgz` de este mismo repositorio. Contiene la máquina virtual de Java y algunos ficheros adicionales. Por defecto se espera que este fichero sea descomprimido en /var/tmp
 * Descomprimir con `tar xzf portable.tgz --preserve-permission`. Dentro del tar van ficheros ejecutables. Si no se descomprime de esa forma se perderá el "executable bit"
 * Añadir al workspace el proyecto **create-gvsig-portable**, o copiar:
  * El script **deploy.xml**
@@ -16,7 +16,15 @@ Este proyecto es básicamente un script de Ant que permite crear versiones porta
 
 * Editar el fichero **portable/projects.xml**. Eliminar de este proyecto los plugins que no nos interesen, y añadir los que queramos
 * Editar las properties *this-folder*, *base-path*, *custom-portable-path*, *name-lin, *name-win* de **deploy.xml** con los valores que queramos
-* Ejectuar el target **createPortables** del script **deploy.xml**
+* Ejectuar el target **createPortables** del script **deploy.xml**. Llega con lanzar uno de los targets, generalmente `makePortableWindows`
+
+```
+Click derecho sobre deploy.xml -> Run as ... -> Ant build ... -> Marcar unicamente makePortableWindows -> Run
+
+En tmp se creará un directorio con la versión portable que se puede lanzar directamente (en una máquina virtual para probar) y un zip que se puede entregar
+
+Debido a un bug no identificado en ocasiones aleatorias borra algunos ficheros de /var/etc/portable. Simplemente abrir el directorio de /tmp/xxx/jre/bin y comprobar que está el ejecutable de java. Si no es así descomprimir de nuevo portable.tgz en la ruta adecuada y volver a ejecutar.
+```
 
 Esto generará un .zip y un .tgz en el directorio /tmp que contendrá el gvSIG portable.
 
